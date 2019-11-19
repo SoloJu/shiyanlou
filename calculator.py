@@ -28,10 +28,10 @@ if __name__ == '__main__':
         result = value * 0.25 -2660
     elif value <= 55000:
         result = value * 0.30 - 4410
-    elif valut <= 80000:
-        result = value * 0.35 - 7160))
+    elif value <= 80000:
+        result = value * 0.35 - 7160
     else:
-        result = value * 0.45 - 15160))
+        result = value * 0.45 - 15160
 
     print(format(result, '.2f'))
 
