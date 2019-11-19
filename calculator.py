@@ -37,5 +37,4 @@ try:
     print(calu_tax(my_income_num))
 except:
     print("Unexpected error:", sys.exc_info()[0])
-    raise
 
