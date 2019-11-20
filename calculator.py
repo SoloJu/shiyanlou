@@ -39,8 +39,8 @@ if __name__ == '__main__':
             print('Parameter Error')
             sys.exit()
         person_tax = taxed(person_income)
-        person_dict[person_nu] = person_income - person_tax
-#    print(person_dict)
+        person_dict[person_nu] = person_income - person_tax - person_income * 0.165
+
     for key, value in person_dict.items():
         print('{0}:{1:.2f}'.format(key, value))
 
