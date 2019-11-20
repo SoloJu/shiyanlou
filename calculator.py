@@ -49,8 +49,8 @@ def main():
             print('Paramenter Error')
             continue
 
-    _, remain = calc_income_tax_and_remain(income)
-    print('{}:{}'.format(employee_id, remain))
+        _, remain = calc_income_tax_and_remain(income)
+        print('{}:{}'.format(employee_id, remain))
 
 
 if __name__ == '__main__':
