@@ -3,18 +3,8 @@
 
 import sys
 
-if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print('Parameter Error')
-        sys.exit()
-
-    try:
-        income = int(sys.argv[1])
-    except ValueError:
-        print('Parameter Error')
-        sys.exit()
-
-    value = income - 5000
+def taxed(income):
+    value = income - 5000 - income * 0.165
 
     if value <= 0:
         result = 0
@@ -32,6 +22,30 @@ if __name__ == '__main__':
         result = value * 0.35 - 7160
     else:
         result = value * 0.45 - 15160
+    return result
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print('Parameter Error')
+        sys.exit()
+
+    for items in sys.argv[1:]:
+        person_dict = {}
+        each_person = items.split(':')
+        person_nu = each_person[0]
+        try:
+            person_income = int(each_person[1])
+        except ValueError:
+            print('Parameter Error')
+            sys.exit()
+        person_tax = taxed(person_income)
+        person_dict[person_nu] = person_income - person_tax
+
+    print(person_dict)
+
+
+
+
 
     print(format(result, '.2f'))
 
