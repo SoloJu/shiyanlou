@@ -31,7 +31,7 @@ SOCIAL_INSURANCE_MONEY_RATE = {
 }
 
 def calc_income_tax_and_remain(income):
-    social_insurance_money = income * sum(SOCIAL_INSURANCE_MONEY_RATE)
+    social_insurance_money = income * sum(SOCIAL_INSURANCE_MONEY_RATE.values())
     real_income = income - social_insurance_money
     taxable_part = real_income - INCOME_TAX_START_POINT
     for item in INCOME_TAX_QUICK_LOOKUP_TABLE:
