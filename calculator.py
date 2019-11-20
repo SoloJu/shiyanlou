@@ -41,11 +41,6 @@ if __name__ == '__main__':
         person_tax = taxed(person_income)
         person_dict[person_nu] = person_income - person_tax
 
-    print(person_dict)
-
-
-
-
-
-    print(format(result, '.2f'))
+    for key, value in person_dict:
+        print('{}:{.2f}'.format(key, value))
 
