@@ -29,8 +29,8 @@ if __name__ == '__main__':
         print('Parameter Error')
         sys.exit()
 
+    person_dict = {}
     for items in sys.argv[1:]:
-        person_dict = {}
         each_person = items.split(':')
         person_nu = each_person[0]
         try:
