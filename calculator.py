@@ -42,5 +42,5 @@ if __name__ == '__main__':
         person_dict[person_nu] = person_income - person_tax
 #    print(person_dict)
     for key, value in person_dict.items():
-        print('{}:{.2f}'.format(key, value))
+        print('{0}:{1:.2f}'.format(key, value))
 
