@@ -39,6 +39,7 @@ def calc_income_tax_and_remain(income):
             tax = taxable_part * item.tax_rate - item.quick_subtractor
             return '{:.2f}'.format(tax), '{:.2f}'.format(real_income - tax)
     return '0.00', '{:.2f}'.format(real_income)
+    # 函数可以返回两个数值
 
 def main():
     for item in sys.argv[1:]:
@@ -50,6 +51,7 @@ def main():
             continue
 
         _, remain = calc_income_tax_and_remain(income)
+        # 此处的_, 是接收传出来的第一个结果，但是这个值没有用，以后也不会用到，所以就给_
         print('{}:{}'.format(employee_id, remain))
 
 
