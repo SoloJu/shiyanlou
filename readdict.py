@@ -5,6 +5,6 @@ import sys
 import csv
 dict_data = {}
 with open(sys.argv[1], 'r') as f:
-    dict_data = dict(csv.reader(f))
+    data = list(csv.reader(f))
 
-print(dict_data)
+print(data)
