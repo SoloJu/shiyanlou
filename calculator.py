@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import csv
 from collections import namedtuple
 
 IncomeTaxQuickLookupItem = namedtuple(
@@ -21,14 +22,11 @@ INCOME_TAX_QUICK_LOOKUP_TABLE = [
     IncomeTaxQuickLookupItem(0.00, 0.03, 0)
 ]
 
-SOCIAL_INSURANCE_MONEY_RATE = {
-    'endowment_insurance': 0.08,
-    'medical_insurance': 0.02,
-    'unemployment_insurance': 0.005,
-    'employment_injury_insurance': 0,
-    'maternity_insurance': 0,
-    'public_accumulation_funds': 0.06
-}
+SOCIAL_INSURANCE_MONEY_RATE = {}
+
+def load_social_insurance_rate(file):
+    with open(file, 'r') as temp_file:
+        SOCIAL_INSURANCE_MONEY_RATE = dict(csv.reader(temp_file))
 
 def calc_income_tax_and_remain(income):
     social_insurance_money = income * sum(SOCIAL_INSURANCE_MONEY_RATE.values())
