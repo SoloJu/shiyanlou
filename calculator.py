@@ -28,10 +28,10 @@ class Args(object):
     def __init__(self):
         self.args = sys.argv[1:]
 
-    def _value_after_option(self，option):
+    def _value_after_option(self, option):
         try:
             index = self.args.index(option)
-            return self.args[index+1]
+            return self.args[index + 1]
         except (ValueError, IndexError):
             print('Parameter Error')
             exit()
@@ -48,12 +48,13 @@ class Args(object):
     def export_path(self):
         return self._value_after_option('-o')
 
+
 args = Args()
 
 
 class Config(object):
 
-    def __init__(self, file):
+    def __init__(self):
         self.config = self._read_config()
 
     def _read_config(self):
@@ -95,24 +96,26 @@ class Config(object):
             self._get_config('GongJiJin')
         ])
 
+
 config = Config()
+
 
 class UserData(object):
 
-    def __init__(self, file):
+    def __init__(self):
         self.userlist = self._read_users_data()
 
-    def _read_user_data(self):
+    def _read_users_data(self):
         userlist = []
         with open(args.userdata_path) as f:
             for line in f.readlines():
                 employee_id, income_string = line.strip().split(',')
-            try:
-                income = int(income_string)
-            except ValueError:
-                print('Income Error')
-                exit()
-            userlist.append(employee_id, income)
+                try:
+                    income = int(income_string)
+                except ValueError:
+                    print('Income Error')
+                    exit()
+                userlist.append([employee_id, income])
 
         return userlist
 
@@ -120,7 +123,7 @@ class UserData(object):
         return self.userlist
 
 
-class IncomTaxCalculator(object):
+class IncomeTaxCalculator(object):
 
     def __init__(self, userdata):
         self.userdata = userdata
@@ -161,5 +164,5 @@ class IncomTaxCalculator(object):
 
 
 if __name__ == '__main__':
-    calculator = IncomTaxCalculator()
+    calculator = IncomeTaxCalculator(UserData())
     calculator.export()
