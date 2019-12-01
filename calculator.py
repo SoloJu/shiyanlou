@@ -84,7 +84,7 @@ def main():
         social_insurance_money, tax, remain = calc_income_tax_and_remain(income)
         each_person = [employee_id, str(income), social_insurance_money, tax, remain]
         #上面要把income变回成字符串，否则写入csv文件出错。
-        user_salary_list.extend(each_person)
+        user_salary_list.append(each_person)
 
     write_user_salary(sys.argv[exist_o+1], user_salary_list)
 
