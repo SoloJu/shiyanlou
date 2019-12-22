@@ -139,9 +139,18 @@ class Config(object):
         """
         内部函数，用来获得配置项的值
         """
+        citylist = self.config.sections()
+
+        for i in range(len(citylist)):
+            if (args.city_path.upper() == citylist[i].upper()):
+                city = citylist[i]
+                break
+            else:
+                city = 'DEFAULT'
+
 
         try:
-            return self.config.get(args.city_path, key)
+            return self.config.get(city, key)
         except KeyError:
             print('Config Error')
             exit()
