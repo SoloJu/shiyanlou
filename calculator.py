@@ -132,6 +132,7 @@ class Config(object):
         """
         config = ConfigParser()
         config.read(args.config_path, encoding='UTF-8')
+        return config
 
 
     def _get_config(self, key):
