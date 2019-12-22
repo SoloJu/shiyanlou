@@ -161,7 +161,7 @@ class Config(object):
         获取社保基数下限
         """
 
-        return self._get_config('JiShuL')
+        return float(self._get_config('JiShuL'))
 
     @property
     def social_insurance_baseline_high(self):
@@ -169,7 +169,7 @@ class Config(object):
         获取社保基数上限
         """
 
-        return self._get_config('JiShuH')
+        return float(self._get_config('JiShuH'))
 
     @property
     def social_insurance_total_rate(self):
@@ -178,12 +178,12 @@ class Config(object):
         """
 
         return sum([
-            self._get_config('YangLao'),
-            self._get_config('YiLiao'),
-            self._get_config('ShiYe'),
-            self._get_config('GongShang'),
-            self._get_config('ShengYu'),
-            self._get_config('GongJiJin')
+            float(self._get_config('YangLao')),
+            float(self._get_config('YiLiao')),
+            float(self._get_config('ShiYe')),
+            float(self._get_config('GongShang')),
+            float(self._get_config('ShengYu')),
+            float(self._get_config('GongJiJin'))
         ])
 
 
