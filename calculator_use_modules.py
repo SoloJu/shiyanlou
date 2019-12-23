@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import csv
-import queue
 import sys
-from collections import namedtuple
-from multiprocessing import Queue, Process
-from configparser import ConfigParser
-from datetime import datetime
+import csv
+import configparser
 from getopt import getopt, GetoptError
+from datetime import datetime
+from collections import namedtuple
+import queue
+from multiprocessing import Queue, Process
 
 # 税率表条目类，该类由 namedtuple 动态创建，代表一个命名元组
 IncomeTaxQuickLookupItem = namedtuple(
@@ -35,34 +35,52 @@ class Args(object):
     命令行参数处理类
     """
 
-    def __init__(self):
-        # 保存命令行参数列表
-        self.args = sys.argv[1:]
+    def __init__(self): #这里是初始化，创建对象时立刻执行
+        # 解析命令行选项
+        self.options = self._options()
+
+    def _options(self):
+        """
+        内部函数，用来解析命令行选项，返回保存了所有选项及其取值的字典
+        """
+
+        try:
+            # 解析命令行选项和参数，本程序只支持选项，因此忽略返回结果里的参数列表
+            opts, _ = getopt(sys.argv[1:], 'hC:c:d:o:', ['help'])
+        except GetoptError:
+            print('Parameter Error')
+            exit()
+        options = dict(opts)    # 这里把元组列表转成字典，方便用key取value
+
+        # 处理 -h 或 --help 选项
+        if len(options) == 1 and ('-h' in options or '--help' in options):
+            print(
+                'Usage: calculator.py -C cityname -c configfile -d userdata -o resultdata')
+            exit()
+
+        return options
 
     def _value_after_option(self, option):
         """
         内部函数，用来获取跟在选项后面的值
         """
-        """
-        try:
-            # 获得选项位置
-            index = self.args.index(option)
-            # 下一位置即为选项值
-            return self.args[index + 1]
-        except (ValueError, IndexError):
+
+        value = self.options.get(option)
+
+        # 城市参数可选，其它参数必须提供
+        if value is None and option != '-C':
             print('Parameter Error')
             exit()
+
+        return value
+
+    @property
+    def city(self):
         """
-        try:
-            # 把选项和参数装入数组
-            optlist, args = getopt.getopt(self.args, 'C:c:d:o:')
-            for i in range(len(optlist)):
-                if option in optlist[i]:
-                    return optlist[i][1]
-                    break
-        except getopt.GetoptError as err:
-            print(err)
-            exit()
+        城市
+        """
+
+        return self._value_after_option('-C')
 
     @property
     def config_path(self):
@@ -88,16 +106,6 @@ class Args(object):
 
         return self._value_after_option('-o')
 
-    @property
-    def city_path(self):
-        """
-        城市选项
-        """
-        if (self._value_after_option('-C') == ' '):
-            return 'default'
-        else:
-            return self._value_after_option('-C')
-
 
 # 创建一个全局参数类对象供后续使用
 args = Args()
@@ -114,46 +122,26 @@ class Config(object):
 
     def _read_config(self):
         """
-        内部函数，用来读取配置文件中的配置项
+        内部函数，用来读取配置文件中指定城市的配置
         """
-        """  
-        config = {}
-        with open(args.config_path) as f:
-            # 依次读取配置文件里的每一行并解析得到配置项名称和值
-            for line in f.readlines():
-                key, value = line.strip().split('=')
-                try:
-                    # 去掉前后可能出现的空格
-                    config[key.strip()] = float(value.strip())
-                except ValueError:
-                    print('Parameter Error')
-                    exit()
 
-        return config
-        """
-        config = ConfigParser()
-        config.read(args.config_path, encoding='UTF-8')
-        return config
-
+        config = configparser.ConfigParser()
+        config.read(args.config_path)
+        # 如果指定了城市并且该城市在配置文件中，返回该城市的配置，否则返回默认的配置
+        if args.city and args.city.upper() in config.sections():    #这里用in,避免了用for循环
+            return config[args.city.upper()]
+        else:
+            return config['DEFAULT']
 
     def _get_config(self, key):
         """
         内部函数，用来获得配置项的值
         """
-        citylist = self.config.sections()
-
-        for i in range(len(citylist)):
-            if (args.city_path.upper() == citylist[i].upper()):
-                city = citylist[i]
-                break
-            else:
-                city = 'DEFAULT'
-
 
         try:
-            return self.config.get(city, key)
-        except KeyError:
-            print('Config Error')
+            return float(self.config[key])  #这里从取的时候就把字符变成浮点。
+        except (ValueError, KeyError):
+            print('Parameter Error')
             exit()
 
     @property
@@ -162,7 +150,7 @@ class Config(object):
         获取社保基数下限
         """
 
-        return float(self._get_config('JiShuL'))
+        return self._get_config('JiShuL')
 
     @property
     def social_insurance_baseline_high(self):
@@ -170,7 +158,7 @@ class Config(object):
         获取社保基数上限
         """
 
-        return float(self._get_config('JiShuH'))
+        return self._get_config('JiShuH')
 
     @property
     def social_insurance_total_rate(self):
@@ -179,12 +167,12 @@ class Config(object):
         """
 
         return sum([
-            float(self._get_config('YangLao')),
-            float(self._get_config('YiLiao')),
-            float(self._get_config('ShiYe')),
-            float(self._get_config('GongShang')),
-            float(self._get_config('ShengYu')),
-            float(self._get_config('GongJiJin'))
+            self._get_config('YangLao'),
+            self._get_config('YiLiao'),
+            self._get_config('ShiYe'),
+            self._get_config('GongShang'),
+            self._get_config('ShengYu'),
+            self._get_config('GongJiJin')
         ])
 
 
@@ -192,7 +180,7 @@ class Config(object):
 config = Config()
 
 
-class UserData(Process):  # 要用到进程，所以继承一个进程类
+class UserData(Process):
     """
     用户工资文件处理进程
     """
@@ -222,7 +210,7 @@ class UserData(Process):  # 要用到进程，所以继承一个进程类
 
         return userdata
 
-    def run(self):  # 重写进程入口run的方法
+    def run(self):
         """
         进程入口方法
         """
@@ -294,7 +282,8 @@ class IncomeTaxCalculator(Process):
         # 计算税后工资
         tax, remain = self.calc_income_tax_and_remain(income)
 
-        return [employee_id, income, social_insurance_money, tax, remain, datetime.now().strftime('%Y-%m-%d %H:%M:%S')]
+        return [employee_id, income, social_insurance_money, tax, remain,
+                datetime.now().strftime('%Y-%m-%d %H:%M:%S')]
 
     def run(self):
         """
