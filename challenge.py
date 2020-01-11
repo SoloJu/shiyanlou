@@ -7,10 +7,13 @@ import datetime
 
 def combine():
     wb = load_workbook('courses.xlsx')
-    ws = wb['time']
-    time_t = tuple(ws.rows)
-    print(len(time_t))
+    ws_name = wb.sheetnames
+    print(ws_name)
+    #for i in range(1,count_t+1):
+
 
 if __name__ == '__main__':
     combine()
 
+
+		
