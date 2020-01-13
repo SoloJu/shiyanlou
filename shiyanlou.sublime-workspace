@@ -3,10 +3,67 @@
 	{
 		"selected_items":
 		[
+			[
+				"co",
+				"courses"
+			],
+			[
+				"sh",
+				"sheets_title\tstatement"
+			],
+			[
+				"ws",
+				"ws_combine\tstatement"
+			],
+			[
+				"row",
+				"row_list\tstatement"
+			],
+			[
+				"fil",
+				"file_list\tstatement"
+			],
+			[
+				"year",
+				"year_list\tstatement"
+			],
+			[
+				"W",
+				"Workbook\tmodule"
+			],
+			[
+				"break",
+				"break\tkeyword"
+			],
+			[
+				"date",
+				"datetime\tclass"
+			],
+			[
+				"op",
+				"openpyxl"
+			],
+			[
+				"s",
+				"squiggly_underline"
+			],
+			[
+				"sheet",
+				"sheet_2\tstatement"
+			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "merge_split_excel.py",
+			"settings":
+			{
+				"buffer_size": 1563,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -20,16 +77,72 @@
 		"selected_items":
 		[
 			[
+				"pa",
+				"Package Control: Remove Package"
+			],
+			[
+				"sublime",
+				"SublimeREPL: Python"
+			],
+			[
+				"sidebar",
+				"Side Bar: Refresh"
+			],
+			[
+				"t",
+				"Terminal: Open in project folder"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"ana",
+				"Anaconda: Goto Python object"
+			],
+			[
+				"package co",
+				"Package Control: Install Package"
+			],
+			[
+				"package re",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"package control",
+				"Install Package Control"
+			],
+			[
+				"anaconda: test",
+				"Anaconda: Run Current File Tests"
+			],
+			[
+				"package lis",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"package in",
+				"Package Control: Install Package"
+			],
+			[
+				"ma",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
 				"",
 				"Markdown Preview: Open Markdown Cheat sheet"
 			],
 			[
 				"previ",
 				"Markdown Preview: Preview in Browser"
-			],
-			[
-				"Package Control: ",
-				"Package Control: Install Package"
 			]
 		],
 		"width": 0.0
@@ -57,6 +170,17 @@
 	"file_history":
 	[
 		"/Users/soloju/Documents/solo/Workbench/015Project/shiyanlou/challenge.py",
+		"/Users/soloju/Documents/solo/Workbench/015Project/shiyanlou/merge_split_excel.py",
+		"/Users/soloju/Library/Application Support/Sublime Text 3/Packages/User/Anaconda.sublime-settings",
+		"/Users/soloju/Library/Application Support/Sublime Text 3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/Users/soloju/Library/Application Support/Sublime Text 3/Packages/User/Python.sublime-settings",
+		"/Users/soloju/Library/Application Support/Sublime Text 3/Packages/SublimeREPL/SublimeREPL.sublime-settings",
+		"/Users/soloju/Library/Application Support/Sublime Text 3/Packages/Anaconda/Default (OSX).sublime-keymap",
+		"/Users/soloju/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/soloju/Documents/solo/Workbench/015Project/shiyanlou/calculator.py",
+		"/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/lib/python3.7/collections/__init__.py",
+		"/Users/soloju/Library/Application Support/Sublime Text 3/Packages/Python/Completion Rules.tmPreferences",
+		"/Users/soloju/Documents/solo/Workbench/015Project/shiyanlou/shiyanlou.sublime-project",
 		"/Users/soloju/Documents/solo/Workbench/015Project/shiyanlou/README.md",
 		"/Users/soloju/Library/Application Support/Sublime Text 3/Packages/User/Package Control.sublime-settings",
 		"/Users/soloju/Library/Application Support/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
@@ -64,7 +188,7 @@
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 24.0
 	},
 	"find_in_files":
 	{
@@ -78,6 +202,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"sheet_1",
+			"theme",
+			"pep8_ignore",
+			"E309",
+			"E501"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -95,18 +224,49 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "merge_split_excel.py",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1563,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 127.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 24.0
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 36.0
 	},
 	"layout":
 	{
@@ -131,6 +291,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 108.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -139,7 +303,7 @@
 	"project": "shiyanlou.sublime-project",
 	"replace":
 	{
-		"height": 0.0
+		"height": 44.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -163,19 +327,19 @@
 		[
 			[
 				"",
-				"~/Documents/solo/Workbench/015Project/shiyanlou/ .sublime-workspace"
+				"~/Documents/solo/Workbench/015Project/shiyanlou/shiyanlou.sublime-project"
 			]
 		],
 		"width": 380.0
 	},
 	"select_symbol":
 	{
-		"height": 0.0,
+		"height": 392.0,
 		"last_filter": "",
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 592.0
 	},
 	"selected_group": 0,
 	"settings":

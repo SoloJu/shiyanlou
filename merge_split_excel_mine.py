@@ -53,6 +53,15 @@ def split():
         wb.save(file_list[i])
 
 
+def show():
+    wb = load_workbook('courses.xlsx')
+    ws = wb['students']
+    for x in ws.rows:
+        print(type(x))
+        break
+
+
 if __name__ == '__main__':
-    combine()
-    split()
+    # combine()
+    # split()
+    show()
