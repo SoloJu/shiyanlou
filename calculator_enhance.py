@@ -30,6 +30,7 @@ SOCIAL_INSURANCE_MONEY_RATE = {
     'public_accumulation_funds': 0.06
 }
 
+
 def calc_income_tax_and_remain(income):
     social_insurance_money = income * sum(SOCIAL_INSURANCE_MONEY_RATE.values())
     real_income = income - social_insurance_money
@@ -40,6 +41,7 @@ def calc_income_tax_and_remain(income):
             return '{:.2f}'.format(tax), '{:.2f}'.format(real_income - tax)
     return '0.00', '{:.2f}'.format(real_income)
     # 函数可以返回两个数值
+
 
 def main():
     for item in sys.argv[1:]:
