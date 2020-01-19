@@ -19,7 +19,12 @@ def open_parser(filename):
             r'"(.+)"'  # 客户端信息
         )
         parsers = re.findall(pattern, logfile.read())
-    return parsers
+    return parsers  # 这里返回的是一个列表，每个元素是元组，每个元组是上述正则表达中所匹配到的字符串组成。例如：
+    '''
+    原来的一条log记录是：216.244.66.231 - - [09/Jan/2017:06:34:01 +0800] "GET /robots.txt HTTP/1.1" 502 181 "-" "Mozilla/5.0 (compatible; DotBot/1.1; http://www.opensiteexplorer.org/dotbot, help@moz.com)"
+    匹配到的就是：[('216.244.66.231', '09/Jan/2017:06:34:01 +0800', '/robots.txt', '502', '181', '-', 'Mozilla/5.0 (compatible; DotBot/1.1; http://www.opensiteexplorer.org/dotbot, help@moz.com)'), ()]
+    每个字符串是上述正则表达中括号分组中的匹配内容。
+    '''
 
 
 def logs_count():
