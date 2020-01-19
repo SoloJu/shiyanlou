@@ -1,29 +1,9 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import sys
 import re
 from datetime import datetime
 
-'''
-open logfile
-for each line:
-if request == get:
-	if datetime == 20170111:
-		if ip in ip_dict:
-			ip_dict['ip'].value +=1
-		else:
-			ip_dict.append(ip)
-	if response == 404:
-		if url in url_dict:
-			url_dict['url'].value +=1
-		else:
-			url_dict.append(url)
-find the largest value of ip_dict
-print it
-find the largest value of url_dict
-print it
-'''
 # set dict for ip
 ip_dict = {}
 url_dict = {}
